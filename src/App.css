@@ -1,0 +1,16 @@
+div.spinner {
+	width: 8em;
+	height: 8em;
+	border-top: 3px solid #44d;
+	border-radius: 20em;
+	left: 50%;
+	top: 50%;  
+	margin: -2.5em  auto auto -2.5em;
+	position: absolute;
+	animation: spin 1.5s infinite linear;
+}
+
+@keyframes spin {
+	50% { border-color: red; }
+	100% { border-color: rgb(191, 191, 211); transform: rotate(360deg); }
+}

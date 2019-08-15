@@ -1,0 +1,48 @@
+.Selector{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+select {
+    display: inline-block;
+    padding:5px; 
+    border:2px solid #ccc; 
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    margin: 0.5rem;
+}
+
+select:focus {
+    border-color:#333;
+}
+
+input[type=submit] {
+    padding:5px 15px; 
+    background:#ccc; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+    margin: 0.5rem;
+}
+
+form{
+    margin: 1.5rem 0 0 0;
+}
+
+label{
+    color: #fff;
+    display: inline;
+}
+
+h1{
+    color: #fff; 
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 3rem;
+    font-weight: bold; 
+    letter-spacing: -1px;
+    line-height: 1;
+    text-align: center; 
+    margin: 0 auto;
+}

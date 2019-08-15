@@ -1,0 +1,50 @@
+<apex:page standardController="AM_Asset__c" extensions="AM_AssetExtension" docType="html-5.0">
+    <apex:form id="form">
+        <apex:pageBlock title="New Asset" mode="New">
+        <!--<apex:pageBlockSection >  {!orderRecord.AccountId}
+            <apex:selectList value="{!Types}" size="1">
+                <apex:selectOptions value="{!familyOptions}"/>
+                <!-- reRender="pageMessages, pagination, orderItemTable"
+                <apex:pageBlockButtons >
+                    <apex:commandButton value="Save" action="{!save}"/>
+                    <apex:commandButton value="Cancel" action="{!cancel}"/>
+                </apex:pageBlockButtons> 
+            </apex:selectList>
+            </apex:pageBlockSection> -->
+            <apex:pageBlockSection >
+                    <apex:input type="number" value="{!add}"/>
+                </apex:pageBlockSection>
+            <apex:repeat value="{!listAm}" var="As">
+                <apex:pageBlockSection >
+                    <apex:inputField label="Name" value="{!As.Name__c}"/>
+                    <apex:inputField label="Type" value="{!As.AM_Type__c}"/>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection >
+                    <apex:inputField label="Location" value="{!As.AM_Location__c}"/>
+                    <apex:inputField label="Out of Service" value="{!As.AM_Out_of_Service__c}"/>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection >
+                    <apex:inputField label="Price" value="{!As.AM_Price__c}"/>
+                    <apex:inputField label="Comments" value="{!As.AM_Comments__c}"/>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection >
+                    <apex:inputField label="Model" value="{!As.Model__c}"/>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection >
+                    <apex:inputField label="Available From" value="{!As.AM_Available_From__c}"/>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection >
+                    <apex:inputField label="Available for allocation" value="{!As.AM_Available_for_allocation__c}"/>
+                </apex:pageBlockSection>
+              <!--  <apex:inputField value ="{!Assets.Name}" required="true"/> 
+				<apex:inputText label="Name"> </apex:inputText>
+            	<apex:inputText label="Price"> </apex:inputText>
+            	<apex:inputCheckbox label="Out of Service"></apex:inputCheckbox>
+            	<apex:inputTextarea label="Comment"></apex:inputTextarea>-->
+			</apex:repeat>
+            <apex:pageBlockButtons >
+                <apex:commandButton id="save" action="{!Save}" value="Save Assets"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

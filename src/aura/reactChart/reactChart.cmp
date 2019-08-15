@@ -1,0 +1,5 @@
+<aura:component access="global" implements="flexipage:availableForAllPageTypes,force:appHostable" >
+            <lightning:container aura:id="root"
+                             src="{!$Resource.reactComponent + '/index.html'}"
+                                 />
+</aura:component>
