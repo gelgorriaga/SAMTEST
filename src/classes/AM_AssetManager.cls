@@ -2,7 +2,7 @@
 global with sharing class AM_AssetManager {
     AM_AssetManager() {}
 	@RemoteAction
-    global static String getAssets() {
+    global static String getAssetss() {
         
         //Map templates
         Map<String,Object> asset = new Map<String,Object>{'asset'=>'','Assigned'=>0,'Not_Assigned'=>0,'Out_of_service'=>0};
@@ -55,7 +55,7 @@ global with sharing class AM_AssetManager {
         //Log country json results
         System.debug(JSON.serialize(new Map<String,Object>{'country'=> country}));
         //return results
-        RestContext.response.addHeader('Content-Type', 'application/json');
+        //RestContext.response.addHeader('Content-Type', 'application/json');
         return JSON.serialize(new Map<String,Object>{'country'=> country});
     }
 }

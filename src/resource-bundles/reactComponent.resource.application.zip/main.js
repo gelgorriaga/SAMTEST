@@ -8649,7 +8649,6 @@ var Selector = function (_React$Component) {
         key: 'handleChange',
         value: function handleChange(evt) {
             this.setState(_defineProperty({}, evt.target.name, evt.target.value));
-            console.log(this.state.chartType);
         }
     }, {
         key: 'render',
@@ -8784,22 +8783,28 @@ var Chart = exports.Chart = function (_Component) {
 
         _this.state = {
             rawData: _this.props.rawData,
-            labels: [],
-            dataLabel: []
+            labels: ['', '', ''],
+            dataLabel: [1, 1, 1]
+
         };
+        _this.fetchData = _this.fetchData.bind(_this);
+        _this.fetchData();
         return _this;
     }
 
     _createClass(Chart, [{
         key: 'componentDidUpdate',
         value: function componentDidUpdate(prevProps, prevState) {
-            var _this2 = this;
-
-            if (prevProps.country === this.props.country && prevProps.chartType === this.props.chartType) {
-
+            if (prevProps.country === this.props.country && prevProps.chartType === this.props.chartType || this.props.chartType === '' || this.props.country === '') {
                 return;
             }
-            //let obj = JSON.parse(this.props.rawData);
+            this.fetchData();
+        }
+    }, {
+        key: 'fetchData',
+        value: function fetchData() {
+            var _this2 = this;
+
             var text = this.props.rawData;
             if (!text) {
                 return;
@@ -8824,9 +8829,7 @@ var Chart = exports.Chart = function (_Component) {
                             if (assetType[value] !== "Computer") dataLabel.push(assetType[value]);
                         });
 
-                        _this2.setState({ labels: labels, dataLabel: dataLabel }, function () {
-                            console.log('New state:', _this2.state);
-                        });
+                        _this2.setState({ labels: labels, dataLabel: dataLabel });
                     }
                 });
 
@@ -8841,9 +8844,7 @@ var Chart = exports.Chart = function (_Component) {
                             if (assetType[value] !== "Mobile_Phone") dataLabel.push(assetType[value]);
                         });
 
-                        _this2.setState({ labels: labels, dataLabel: dataLabel }, function () {
-                            console.log('New state:', _this2.state);
-                        });
+                        _this2.setState({ labels: labels, dataLabel: dataLabel });
                     }
                 });
 
@@ -8858,36 +8859,9 @@ var Chart = exports.Chart = function (_Component) {
                             if (assetType[value] !== "Unassigned_Peripherals") dataLabel.push(assetType[value]);
                         });
 
-                        _this2.setState({ labels: labels, dataLabel: dataLabel }, function () {
-                            console.log('New state:', _this2.state);
-                        });
+                        _this2.setState({ labels: labels, dataLabel: dataLabel });
                     }
                 });
-                // }else if (assetType.asset === 'Mobile_Phone'&& this.props.chartType === 'Mobile Phone Chart') {
-                //     let labels = Object.keys(assetType);
-                //     labels = labels.filter(label => label !== 'asset');
-                //     let dataLabel = []
-                //     labels.forEach(value => {
-                //         if(assetType[value] !== "Mobile_Phone")
-                //             dataLabel.push(assetType[value]);
-                //     });
-
-                //     this.setState({ labels, dataLabel }, () => {
-                //         console.log(`New state:`, this.state);
-                //     });
-                // }else if (assetType.asset === 'Unassigned_Peripherals'&& this.props.chartType === 'Unassigned Peripheral Chart') {
-                //     let labels = Object.keys(assetType);
-                //     labels = labels.filter(label => label !== 'asset');
-                //     let dataLabel = []
-                //     labels.forEach(value => {
-                //         if(assetType[value] !== "Unassigned_Peripherals")
-                //             dataLabel.push(assetType[value]);
-                //     });
-
-                //     this.setState({ labels, dataLabel }, () => {
-                //         console.log(`New state:`, this.state);
-                //     });
-
             } catch (error) {
                 console.log('Parsing error:', error);
             }
