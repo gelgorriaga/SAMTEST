@@ -13,7 +13,7 @@ global with sharing class reactController {
 		'				\"Out_of_service\": 3'+
 		'			},'+
 		'			{'+
-		'				\"asset \": \"Mobile_Phone\",'+
+		'				\"asset\": \"Mobile_Phone\",'+
 		'				\"Assigned\": 1,'+
 		'				\"Not_Assigned\": 2,'+
 		'				\"Out_of_service\": 3'+
@@ -35,7 +35,7 @@ global with sharing class reactController {
 		'				\"Out_of_service\": 6'+
 		'			},'+
 		'			{'+
-		'				\"asset \": \"Mobile_Phone\",'+
+		'				\"asset\": \"Mobile_Phone\",'+
 		'				\"Assigned\": 4,'+
 		'				\"Not_Assigned\": 5,'+
 		'				\"Out_of_service\": 6'+
@@ -57,7 +57,7 @@ global with sharing class reactController {
 		'				\"Out_of_service\": 9'+
 		'			},'+
 		'			{'+
-		'				\"asset \": \"Mobile_Phone\",'+
+		'				\"asset\": \"Mobile_Phone\",'+
 		'				\"Assigned\": 7,'+
 		'				\"Not_Assigned\": 8,'+
 		'				\"Out_of_service\": 9'+

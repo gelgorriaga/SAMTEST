@@ -8459,10 +8459,14 @@ var App = function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var stringData = JSON.stringify(this.state.rawData);
       return _react2.default.createElement(
         "div",
         null,
+        _react2.default.createElement(
+          "h1",
+          null,
+          " Oktana Asset Charts"
+        ),
         this.state.isLoaded ? _react2.default.createElement(_Selector2.default, { rawData: this.state.rawData }) : _react2.default.createElement("div", { className: "spinner" })
       );
     }
@@ -8634,8 +8638,8 @@ var Selector = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (Selector.__proto__ || Object.getPrototypeOf(Selector)).call(this, props));
 
         _this.state = {
-            country: 'Uruguay',
-            chartType: 'Computer Chart'
+            country: '',
+            chartType: ''
         };
         _this.handleChange = _this.handleChange.bind(_this);
         return _this;
@@ -8645,34 +8649,21 @@ var Selector = function (_React$Component) {
         key: 'handleChange',
         value: function handleChange(evt) {
             this.setState(_defineProperty({}, evt.target.name, evt.target.value));
+            console.log(this.state.chartType);
         }
     }, {
         key: 'render',
         value: function render() {
-            // const chartType = this.state.chartType;
-            // let chart;
-            // if (this.state.chartType === 'UnassignedPeripheralChart') {
-            //     chart = <UnassignedPeripheralChart country={this.state.country} chartType={this.state.chartType} rawData={this.props.rawData} />;
-
-            // } else if (this.state.chartType === 'ComputerChart') {
-            //     chart = <ComputerChart country={this.state.country} chartType={this.state.chartType} rawData={this.props.rawData}/>;
-            // } else if (this.state.chartType === 'MobilePhoneChart') {
-            //     chart = <MobilePhoneChart country={this.state.country} chartType={this.state.chartType} rawData={this.props.rawData}/>;
-            // }
+            var renderChart = this.state.chartType !== '' && this.state.country !== '' ? _react2.default.createElement(_Chart2.default, { country: this.state.country, chartType: this.state.chartType, rawData: this.props.rawData }) : _react2.default.createElement('div', null);
             return _react2.default.createElement(
                 'div',
                 null,
-                _react2.default.createElement(
-                    'h1',
-                    null,
-                    ' Oktana Asset Charts '
-                ),
                 _react2.default.createElement(
                     'div',
                     { className: 'Selector' },
                     _react2.default.createElement(
                         'form',
-                        { onSubmit: this.handleSubmit },
+                        null,
                         _react2.default.createElement(
                             'div',
                             null,
@@ -8684,6 +8675,11 @@ var Selector = function (_React$Component) {
                             _react2.default.createElement(
                                 'select',
                                 { value: this.state.chartType, onChange: this.handleChange, name: 'chartType' },
+                                _react2.default.createElement(
+                                    'option',
+                                    { value: '', selected: true, disabled: true },
+                                    'Choose here'
+                                ),
                                 _react2.default.createElement(
                                     'option',
                                     { value: 'Unassigned Peripheral Chart' },
@@ -8714,6 +8710,11 @@ var Selector = function (_React$Component) {
                                 { value: this.state.country, onChange: this.handleChange, name: 'country' },
                                 _react2.default.createElement(
                                     'option',
+                                    { value: '', selected: true, disabled: true },
+                                    'Choose here'
+                                ),
+                                _react2.default.createElement(
+                                    'option',
                                     { value: 'Paraguay' },
                                     'Paraguay'
                                 ),
@@ -8734,8 +8735,7 @@ var Selector = function (_React$Component) {
                 _react2.default.createElement(
                     'div',
                     { style: { width: 400, height: 250, margin: "5vw 35vw" } },
-                    _react2.default.createElement(_Chart2.default, { country: this.state.country, chartType: this.state.chartType, rawData: this.props.rawData }),
-                    ';'
+                    renderChart
                 )
             );
         }
@@ -8795,7 +8795,7 @@ var Chart = exports.Chart = function (_Component) {
         value: function componentDidUpdate(prevProps, prevState) {
             var _this2 = this;
 
-            if (prevProps.country === this.props.country && prevProps.chartType === this.props.chartType || this.state.firstFetch) {
+            if (prevProps.country === this.props.country && prevProps.chartType === this.props.chartType) {
 
                 return;
             }
@@ -8827,34 +8827,67 @@ var Chart = exports.Chart = function (_Component) {
                         _this2.setState({ labels: labels, dataLabel: dataLabel }, function () {
                             console.log('New state:', _this2.state);
                         });
-                    } else if (assetType.asset === 'Mobile_Phone' && _this2.props.chartType === 'Mobile Phone Chart') {
-                        var _labels = Object.keys(assetType);
-                        _labels = _labels.filter(function (label) {
+                    }
+                });
+
+                x.country[countrySelected].forEach(function (assetType) {
+                    if (assetType.asset === 'Mobile_Phone' && _this2.props.chartType === 'Mobile Phone Chart') {
+                        var labels = Object.keys(assetType);
+                        labels = labels.filter(function (label) {
                             return label !== 'asset';
                         });
-                        var _dataLabel = [];
-                        _labels.forEach(function (value) {
-                            if (assetType[value] !== "Mobile_Phone") _dataLabel.push(assetType[value]);
+                        var dataLabel = [];
+                        labels.forEach(function (value) {
+                            if (assetType[value] !== "Mobile_Phone") dataLabel.push(assetType[value]);
                         });
 
-                        _this2.setState({ labels: _labels, dataLabel: _dataLabel }, function () {
-                            console.log('New state:', _this2.state);
-                        });
-                    } else if (assetType.asset === 'Unassigned_Peripherals' && _this2.props.chartType === 'Unassigned Peripheral Chart') {
-                        var _labels2 = Object.keys(assetType);
-                        _labels2 = _labels2.filter(function (label) {
-                            return label !== 'asset';
-                        });
-                        var _dataLabel2 = [];
-                        _labels2.forEach(function (value) {
-                            if (assetType[value] !== "Unassigned_Peripherals") _dataLabel2.push(assetType[value]);
-                        });
-
-                        _this2.setState({ labels: _labels2, dataLabel: _dataLabel2 }, function () {
+                        _this2.setState({ labels: labels, dataLabel: dataLabel }, function () {
                             console.log('New state:', _this2.state);
                         });
                     }
                 });
+
+                x.country[countrySelected].forEach(function (assetType) {
+                    if (assetType.asset === 'Unassigned_Peripherals' && _this2.props.chartType === 'Unassigned Peripheral Chart') {
+                        var labels = Object.keys(assetType);
+                        labels = labels.filter(function (label) {
+                            return label !== 'asset';
+                        });
+                        var dataLabel = [];
+                        labels.forEach(function (value) {
+                            if (assetType[value] !== "Unassigned_Peripherals") dataLabel.push(assetType[value]);
+                        });
+
+                        _this2.setState({ labels: labels, dataLabel: dataLabel }, function () {
+                            console.log('New state:', _this2.state);
+                        });
+                    }
+                });
+                // }else if (assetType.asset === 'Mobile_Phone'&& this.props.chartType === 'Mobile Phone Chart') {
+                //     let labels = Object.keys(assetType);
+                //     labels = labels.filter(label => label !== 'asset');
+                //     let dataLabel = []
+                //     labels.forEach(value => {
+                //         if(assetType[value] !== "Mobile_Phone")
+                //             dataLabel.push(assetType[value]);
+                //     });
+
+                //     this.setState({ labels, dataLabel }, () => {
+                //         console.log(`New state:`, this.state);
+                //     });
+                // }else if (assetType.asset === 'Unassigned_Peripherals'&& this.props.chartType === 'Unassigned Peripheral Chart') {
+                //     let labels = Object.keys(assetType);
+                //     labels = labels.filter(label => label !== 'asset');
+                //     let dataLabel = []
+                //     labels.forEach(value => {
+                //         if(assetType[value] !== "Unassigned_Peripherals")
+                //             dataLabel.push(assetType[value]);
+                //     });
+
+                //     this.setState({ labels, dataLabel }, () => {
+                //         console.log(`New state:`, this.state);
+                //     });
+
             } catch (error) {
                 console.log('Parsing error:', error);
             }
@@ -46665,7 +46698,7 @@ exports = module.exports = __webpack_require__(282)(false);
 
 
 // module
-exports.push([module.i, ".Selector{\n    display: flex;\n    justify-content: center;\n    margin: 0 auto;\n}\n\nselect {\n    display: inline-block;\n    padding:5px; \n    border:2px solid #ccc; \n    -webkit-border-radius: 5px;\n    border-radius: 5px;\n    margin: 0.5rem;\n}\n\nselect:focus {\n    border-color:#333;\n}\n\ninput[type=submit] {\n    padding:5px 15px; \n    background:#ccc; \n    border:0 none;\n    cursor:pointer;\n    -webkit-border-radius: 5px;\n    border-radius: 5px; \n    margin: 0.5rem;\n}\n\nform{\n    margin: 1.5rem 0 0 0;\n}\n\nlabel{\n    color: #fff;\n    display: inline;\n}\n\nh1{\n    color: #fff; \n    font-family: 'Helvetica Neue', sans-serif;\n    font-size: 3rem;\n    font-weight: bold; \n    letter-spacing: -1px;\n    line-height: 1;\n    text-align: center; \n    margin: 0 auto;\n}", ""]);
+exports.push([module.i, ".Selector{\n    display: flex;\n    justify-content: center;\n    margin: 0 auto;\n}\n\nselect {\n    display: inline-block;\n    padding:5px; \n    border:2px solid #ccc; \n    -webkit-border-radius: 5px;\n    border-radius: 5px;\n    margin: 0.5rem;\n}\n\nselect:focus {\n    border-color:#333;\n}\n\ninput[type=submit] {\n    padding:5px 15px; \n    background:#ccc; \n    border:0 none;\n    cursor:pointer;\n    -webkit-border-radius: 5px;\n    border-radius: 5px; \n    margin: 0.5rem;\n}\n\nform{\n    margin: 1.5rem 0 0 0;\n}\n\nlabel{\n    color: #fff;\n    display: inline;\n}\n\n", ""]);
 
 // exports
 
@@ -47267,7 +47300,7 @@ exports = module.exports = __webpack_require__(282)(false);
 
 
 // module
-exports.push([module.i, "div.spinner {\n\twidth: 8em;\n\theight: 8em;\n\tborder-top: 3px solid #44d;\n\tborder-radius: 20em;\n\tleft: 50%;\n\ttop: 50%;  \n\tmargin: -2.5em  auto auto -2.5em;\n\tposition: absolute;\n\tanimation: spin 1.5s infinite linear;\n}\n\n@keyframes spin {\n\t50% { border-color: red; }\n\t100% { border-color: rgb(191, 191, 211); transform: rotate(360deg); }\n}", ""]);
+exports.push([module.i, "div.spinner {\n  width: 8em;\n  height: 8em;\n  border-top: 3px solid #44d;\n  border-radius: 20em;\n  left: 50%;\n  top: 50%;\n  margin: -2.5em auto auto -2.5em;\n  position: absolute;\n  animation: spin 1.5s infinite linear;\n}\n\n@keyframes spin {\n  50% {\n    border-color: red;\n  }\n  100% {\n    border-color: rgb(191, 191, 211);\n    transform: rotate(360deg);\n  }\n}\n\nh1 {\n  color: #fff;\n  font-family: \"Helvetica Neue\", sans-serif;\n  font-size: 3rem;\n  font-weight: bold;\n  letter-spacing: -1px;\n  line-height: 1;\n  text-align: center;\n  margin: 0 auto;\n}\n", ""]);
 
 // exports
 

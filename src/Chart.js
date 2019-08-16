@@ -12,7 +12,7 @@ export class Chart extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if ((prevProps.country === this.props.country && prevProps.chartType===this.props.chartType ) || this.state.firstFetch) {
+        if ((prevProps.country === this.props.country )&& (prevProps.chartType===this.props.chartType )) {
 
             return;
         }
@@ -43,7 +43,12 @@ export class Chart extends Component {
                         this.setState({ labels, dataLabel }, () => {
                             console.log(`New state:`, this.state);
                         });
-                    }else if (assetType.asset === 'Mobile_Phone'&& this.props.chartType === 'Mobile Phone Chart') {
+                    }
+                
+                });
+
+                x.country[countrySelected].forEach(assetType => {
+                    if (assetType.asset === 'Mobile_Phone' && this.props.chartType === 'Mobile Phone Chart') {
                         let labels = Object.keys(assetType);
                         labels = labels.filter(label => label !== 'asset');
                         let dataLabel = []
@@ -55,7 +60,12 @@ export class Chart extends Component {
                         this.setState({ labels, dataLabel }, () => {
                             console.log(`New state:`, this.state);
                         });
-                    }else if (assetType.asset === 'Unassigned_Peripherals'&& this.props.chartType === 'Unassigned Peripheral Chart') {
+                    }
+                
+                });
+
+                x.country[countrySelected].forEach(assetType => {
+                    if (assetType.asset === 'Unassigned_Peripherals' && this.props.chartType === 'Unassigned Peripheral Chart') {
                         let labels = Object.keys(assetType);
                         labels = labels.filter(label => label !== 'asset');
                         let dataLabel = []
@@ -70,6 +80,31 @@ export class Chart extends Component {
                     }
                 
                 });
+                    // }else if (assetType.asset === 'Mobile_Phone'&& this.props.chartType === 'Mobile Phone Chart') {
+                    //     let labels = Object.keys(assetType);
+                    //     labels = labels.filter(label => label !== 'asset');
+                    //     let dataLabel = []
+                    //     labels.forEach(value => {
+                    //         if(assetType[value] !== "Mobile_Phone")
+                    //             dataLabel.push(assetType[value]);
+                    //     });
+    
+                    //     this.setState({ labels, dataLabel }, () => {
+                    //         console.log(`New state:`, this.state);
+                    //     });
+                    // }else if (assetType.asset === 'Unassigned_Peripherals'&& this.props.chartType === 'Unassigned Peripheral Chart') {
+                    //     let labels = Object.keys(assetType);
+                    //     labels = labels.filter(label => label !== 'asset');
+                    //     let dataLabel = []
+                    //     labels.forEach(value => {
+                    //         if(assetType[value] !== "Unassigned_Peripherals")
+                    //             dataLabel.push(assetType[value]);
+                    //     });
+    
+                    //     this.setState({ labels, dataLabel }, () => {
+                    //         console.log(`New state:`, this.state);
+                    //     });
+                    
             
         } catch (error) {
             console.log(`Parsing error:`, error);

@@ -39,10 +39,10 @@ class App extends Component {
   }
 
   render() {
-    let stringData = JSON.stringify(this.state.rawData);
     return (
       <div>
-        {this.state.isLoaded ? <Selector rawData = {this.state.rawData} /> : <div className="spinner"></div>}
+        <h1> Oktana Asset Charts</h1>
+       {this.state.isLoaded ? <Selector rawData = {this.state.rawData} /> : <div className="spinner"></div>}
       </div>
     );
   }
