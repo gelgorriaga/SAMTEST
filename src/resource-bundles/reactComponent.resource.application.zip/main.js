@@ -8401,7 +8401,7 @@ var _Selector = __webpack_require__(14);
 
 var _Selector2 = _interopRequireDefault(_Selector);
 
-__webpack_require__(287);
+__webpack_require__(285);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8609,19 +8609,11 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _UnassignedPeripheralChart = __webpack_require__(15);
+var _Chart = __webpack_require__(15);
 
-var _UnassignedPeripheralChart2 = _interopRequireDefault(_UnassignedPeripheralChart);
+var _Chart2 = _interopRequireDefault(_Chart);
 
-var _ComputerChart = __webpack_require__(280);
-
-var _ComputerChart2 = _interopRequireDefault(_ComputerChart);
-
-var _MobilePhoneChart = __webpack_require__(281);
-
-var _MobilePhoneChart2 = _interopRequireDefault(_MobilePhoneChart);
-
-__webpack_require__(282);
+__webpack_require__(280);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8643,7 +8635,7 @@ var Selector = function (_React$Component) {
 
         _this.state = {
             country: 'Uruguay',
-            chartType: 'ComputerChart'
+            chartType: 'Computer Chart'
         };
         _this.handleChange = _this.handleChange.bind(_this);
         return _this;
@@ -8657,15 +8649,16 @@ var Selector = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            var chartType = this.state.chartType;
-            var chart = void 0;
-            if (this.state.chartType === 'UnassignedPeripheralChart') {
-                chart = _react2.default.createElement(_UnassignedPeripheralChart2.default, { country: this.state.country, chartType: this.state.chartType, rawData: this.props.rawData });
-            } else if (this.state.chartType === 'ComputerChart') {
-                chart = _react2.default.createElement(_ComputerChart2.default, { country: this.state.country, chartType: this.state.chartType, rawData: this.props.rawData });
-            } else {
-                chart = _react2.default.createElement(_MobilePhoneChart2.default, { country: this.state.country, chartType: this.state.chartType, rawData: this.props.rawData });
-            }
+            // const chartType = this.state.chartType;
+            // let chart;
+            // if (this.state.chartType === 'UnassignedPeripheralChart') {
+            //     chart = <UnassignedPeripheralChart country={this.state.country} chartType={this.state.chartType} rawData={this.props.rawData} />;
+
+            // } else if (this.state.chartType === 'ComputerChart') {
+            //     chart = <ComputerChart country={this.state.country} chartType={this.state.chartType} rawData={this.props.rawData}/>;
+            // } else if (this.state.chartType === 'MobilePhoneChart') {
+            //     chart = <MobilePhoneChart country={this.state.country} chartType={this.state.chartType} rawData={this.props.rawData}/>;
+            // }
             return _react2.default.createElement(
                 'div',
                 null,
@@ -8679,7 +8672,7 @@ var Selector = function (_React$Component) {
                     { className: 'Selector' },
                     _react2.default.createElement(
                         'form',
-                        null,
+                        { onSubmit: this.handleSubmit },
                         _react2.default.createElement(
                             'div',
                             null,
@@ -8693,17 +8686,17 @@ var Selector = function (_React$Component) {
                                 { value: this.state.chartType, onChange: this.handleChange, name: 'chartType' },
                                 _react2.default.createElement(
                                     'option',
-                                    { value: 'UnassignedPeripheralChart' },
+                                    { value: 'Unassigned Peripheral Chart' },
                                     'Unassigned peripherals'
                                 ),
                                 _react2.default.createElement(
                                     'option',
-                                    { value: 'ComputerChart' },
+                                    { value: 'Computer Chart' },
                                     'Computers'
                                 ),
                                 _react2.default.createElement(
                                     'option',
-                                    { value: 'MobilePhoneChart' },
+                                    { value: 'Mobile Phone Chart' },
                                     'Mobile phones'
                                 )
                             )
@@ -8741,8 +8734,8 @@ var Selector = function (_React$Component) {
                 _react2.default.createElement(
                     'div',
                     { style: { width: 400, height: 250, margin: "5vw 35vw" } },
-                    chart,
-                    console.log('SELECTOR COUNTRY ' + this.state.country)
+                    _react2.default.createElement(_Chart2.default, { country: this.state.country, chartType: this.state.chartType, rawData: this.props.rawData }),
+                    ';'
                 )
             );
         }
@@ -8763,7 +8756,7 @@ exports.default = Selector;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.UnassignedPeripheralChart = undefined;
+exports.Chart = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -8781,32 +8774,31 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var UnassignedPeripheralChart = exports.UnassignedPeripheralChart = function (_Component) {
-    _inherits(UnassignedPeripheralChart, _Component);
+var Chart = exports.Chart = function (_Component) {
+    _inherits(Chart, _Component);
 
-    function UnassignedPeripheralChart(props) {
-        _classCallCheck(this, UnassignedPeripheralChart);
+    function Chart(props) {
+        _classCallCheck(this, Chart);
 
-        var _this = _possibleConstructorReturn(this, (UnassignedPeripheralChart.__proto__ || Object.getPrototypeOf(UnassignedPeripheralChart)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (Chart.__proto__ || Object.getPrototypeOf(Chart)).call(this, props));
 
         _this.state = {
             rawData: _this.props.rawData,
-            country: _this.props.country,
             labels: [],
             dataLabel: []
         };
         return _this;
     }
 
-    _createClass(UnassignedPeripheralChart, [{
+    _createClass(Chart, [{
         key: 'componentDidUpdate',
         value: function componentDidUpdate(prevProps, prevState) {
             var _this2 = this;
 
-            if (prevProps.country === this.props.country) {
+            if (prevProps.country === this.props.country && prevProps.chartType === this.props.chartType || this.state.firstFetch) {
+
                 return;
             }
-
             //let obj = JSON.parse(this.props.rawData);
             var text = this.props.rawData;
             if (!text) {
@@ -8814,24 +8806,51 @@ var UnassignedPeripheralChart = exports.UnassignedPeripheralChart = function (_C
             }
             try {
                 var x = text.toString().replace(/&quot;/g, '\"');
-                x = x.replace(/\s/g, "");
+                //x = x.replace(/\s/g, "");
                 // x = x.replace(/\_/g, " ");
                 x = JSON.parse(x);
                 var countrySelected = this.props.country;
+
                 console.log('=>', x.country[countrySelected]);
 
                 x.country[countrySelected].forEach(function (assetType) {
-                    if (assetType.asset === 'Unassigned_Peripherals') {
+                    if (assetType.asset === 'Computer' && _this2.props.chartType === 'Computer Chart') {
                         var labels = Object.keys(assetType);
                         labels = labels.filter(function (label) {
                             return label !== 'asset';
                         });
                         var dataLabel = [];
                         labels.forEach(function (value) {
-                            if (assetType[value] !== "Unassigned_Peripherals") dataLabel.push(assetType[value]);
+                            if (assetType[value] !== "Computer") dataLabel.push(assetType[value]);
                         });
 
                         _this2.setState({ labels: labels, dataLabel: dataLabel }, function () {
+                            console.log('New state:', _this2.state);
+                        });
+                    } else if (assetType.asset === 'Mobile_Phone' && _this2.props.chartType === 'Mobile Phone Chart') {
+                        var _labels = Object.keys(assetType);
+                        _labels = _labels.filter(function (label) {
+                            return label !== 'asset';
+                        });
+                        var _dataLabel = [];
+                        _labels.forEach(function (value) {
+                            if (assetType[value] !== "Mobile_Phone") _dataLabel.push(assetType[value]);
+                        });
+
+                        _this2.setState({ labels: _labels, dataLabel: _dataLabel }, function () {
+                            console.log('New state:', _this2.state);
+                        });
+                    } else if (assetType.asset === 'Unassigned_Peripherals' && _this2.props.chartType === 'Unassigned Peripheral Chart') {
+                        var _labels2 = Object.keys(assetType);
+                        _labels2 = _labels2.filter(function (label) {
+                            return label !== 'asset';
+                        });
+                        var _dataLabel2 = [];
+                        _labels2.forEach(function (value) {
+                            if (assetType[value] !== "Unassigned_Peripherals") _dataLabel2.push(assetType[value]);
+                        });
+
+                        _this2.setState({ labels: _labels2, dataLabel: _dataLabel2 }, function () {
                             console.log('New state:', _this2.state);
                         });
                     }
@@ -8850,7 +8869,7 @@ var UnassignedPeripheralChart = exports.UnassignedPeripheralChart = function (_C
                     data: {
                         labels: this.state.labels,
                         datasets: [{
-                            label: 'Unassigned Peripherals',
+                            label: '' + this.props.chartType,
                             data: this.state.dataLabel,
                             backgroundColor: ['rgba(236, 238, 133, 0.4)', 'rgba(255,89,0,0.4)', 'rgba(0,104,255,0.4)', 'rgba(2,153,134,0.4)', 'rgba(171,111,39,0.4)', 'rgba(201,113,220,0.4)']
                         }]
@@ -8859,7 +8878,7 @@ var UnassignedPeripheralChart = exports.UnassignedPeripheralChart = function (_C
                     height: 300,
                     options: { title: {
                             display: true,
-                            text: this.props.country + ' unassigned peripherals',
+                            text: this.props.country + ' ' + this.props.chartType,
                             fontSize: 25,
                             fontColor: "#fff"
                         },
@@ -8879,10 +8898,10 @@ var UnassignedPeripheralChart = exports.UnassignedPeripheralChart = function (_C
         }
     }]);
 
-    return UnassignedPeripheralChart;
+    return Chart;
 }(_react.Component);
 
-exports.default = UnassignedPeripheralChart;
+exports.default = Chart;
 
 /***/ }),
 /* 16 */
@@ -46616,271 +46635,8 @@ module.exports = basePropertyDeep;
 /* 280 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
 
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.ComputerChart = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactChartjs = __webpack_require__(16);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var ComputerChart = exports.ComputerChart = function (_Component) {
-    _inherits(ComputerChart, _Component);
-
-    function ComputerChart(props) {
-        _classCallCheck(this, ComputerChart);
-
-        var _this = _possibleConstructorReturn(this, (ComputerChart.__proto__ || Object.getPrototypeOf(ComputerChart)).call(this, props));
-
-        _this.state = {
-            rawData: _this.props.rawData,
-            country: _this.props.country,
-            labels: [],
-            dataLabel: []
-        };
-        return _this;
-    }
-
-    _createClass(ComputerChart, [{
-        key: 'componentDidUpdate',
-        value: function componentDidUpdate(prevProps, prevState) {
-            var _this2 = this;
-
-            if (prevProps.country === this.props.country) {
-                return;
-            }
-            //let obj = JSON.parse(this.props.rawData);
-            var text = this.props.rawData;
-            if (!text) {
-                return;
-            }
-            try {
-                var x = text.toString().replace(/&quot;/g, '\"');
-                x = x.replace(/\s/g, "");
-                // x = x.replace(/\_/g, " ");
-                x = JSON.parse(x);
-                var countrySelected = this.props.country;
-
-                console.log('=>', x.country[countrySelected]);
-
-                x.country[countrySelected].forEach(function (assetType) {
-                    if (assetType.asset === 'Computer') {
-                        var labels = Object.keys(assetType);
-                        labels = labels.filter(function (label) {
-                            return label !== 'asset';
-                        });
-                        var dataLabel = [];
-                        labels.forEach(function (value) {
-                            if (assetType[value] !== "Computer") dataLabel.push(assetType[value]);
-                        });
-
-                        _this2.setState({ labels: labels, dataLabel: dataLabel }, function () {
-                            console.log('New state:', _this2.state);
-                        });
-                    }
-                });
-            } catch (error) {
-                console.log('Parsing error:', error);
-            }
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                'div',
-                { className: 'Chart' },
-                _react2.default.createElement(_reactChartjs.Doughnut, {
-                    data: {
-                        labels: this.state.labels,
-                        datasets: [{
-                            label: 'Computers',
-                            data: this.state.dataLabel,
-                            backgroundColor: ['rgba(236, 238, 133, 0.4)', 'rgba(255,89,0,0.4)', 'rgba(0,104,255,0.4)']
-                        }]
-                    },
-                    width: 300,
-                    height: 300,
-                    options: { title: {
-                            display: true,
-                            text: this.props.country + ' Computers',
-                            fontSize: 25,
-                            fontColor: "#fff"
-                        },
-                        legend: {
-                            display: true,
-                            position: 'right',
-                            fontColor: "#fff",
-                            labels: {
-                                display: true,
-                                fontColor: "#fff",
-                                fontSize: 10
-
-                            }
-                        } }
-                })
-            );
-        }
-    }]);
-
-    return ComputerChart;
-}(_react.Component);
-
-exports.default = ComputerChart;
-
-/***/ }),
-/* 281 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.MobilePhoneChart = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactChartjs = __webpack_require__(16);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var MobilePhoneChart = exports.MobilePhoneChart = function (_Component) {
-    _inherits(MobilePhoneChart, _Component);
-
-    function MobilePhoneChart(props) {
-        _classCallCheck(this, MobilePhoneChart);
-
-        var _this = _possibleConstructorReturn(this, (MobilePhoneChart.__proto__ || Object.getPrototypeOf(MobilePhoneChart)).call(this, props));
-
-        _this.state = {
-            rawData: _this.props.rawData,
-            country: _this.props.country,
-            labels: [],
-            dataLabel: []
-        };
-        return _this;
-    }
-
-    _createClass(MobilePhoneChart, [{
-        key: 'componentDidUpdate',
-        value: function componentDidUpdate(prevProps, prevState) {
-            var _this2 = this;
-
-            if (prevProps.country === this.props.country) {
-                return;
-            }
-            //let obj = JSON.parse(this.props.rawData);
-            var text = this.props.rawData;
-            if (!text) {
-                return;
-            }
-            try {
-                var x = text.toString().replace(/&quot;/g, '\"');
-
-                x = x.replace(/\s/g, "");
-                // x = x.replace(/\_/g, " ");
-                x = JSON.parse(x);
-                var countrySelected = this.props.country;
-                console.log('=>', x.country[countrySelected]);
-
-                x.country[countrySelected].forEach(function (assetType) {
-                    if (assetType.asset === 'Mobile_Phone') {
-                        var labels = Object.keys(assetType);
-                        labels = labels.filter(function (label) {
-                            return label !== 'asset';
-                        });
-                        var dataLabel = [];
-                        labels.forEach(function (value) {
-                            if (assetType[value] !== "Mobile_Phone") dataLabel.push(assetType[value]);
-                        });
-
-                        _this2.setState({ labels: labels, dataLabel: dataLabel }, function () {
-                            console.log('New state:', _this2.state);
-                        });
-                    }
-                });
-            } catch (error) {
-                console.log('Parsing error:', error);
-            }
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-
-            return _react2.default.createElement(
-                'div',
-                { className: 'Chart' },
-                _react2.default.createElement(_reactChartjs.Doughnut, {
-                    data: {
-                        labels: this.state.labels,
-                        datasets: [{
-                            label: 'Mobile Phones',
-                            data: this.state.dataLabel,
-                            backgroundColor: ['rgba(236, 238, 133, 0.4)', 'rgba(255,89,0,0.4)', 'rgba(0,104,255,0.4)']
-                        }]
-                    },
-                    width: 300,
-                    height: 300,
-                    options: { title: {
-                            display: true,
-                            text: this.props.country + ' Mobile Phones',
-                            fontSize: 25,
-                            fontColor: "#fff"
-                        },
-                        legend: {
-                            display: true,
-                            position: 'right',
-                            fontColor: "#fff",
-                            labels: {
-                                display: true,
-                                fontColor: "#fff",
-                                fontSize: 10
-
-                            }
-                        } }
-                })
-            );
-        }
-    }]);
-
-    return MobilePhoneChart;
-}(_react.Component);
-
-exports.default = MobilePhoneChart;
-
-/***/ }),
-/* 282 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(283);
+var content = __webpack_require__(281);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -46894,17 +46650,17 @@ var options = {"hmr":true}
 options.transform = transform
 options.insertInto = undefined;
 
-var update = __webpack_require__(285)(content, options);
+var update = __webpack_require__(283)(content, options);
 
 if(content.locals) module.exports = content.locals;
 
 if(false) {}
 
 /***/ }),
-/* 283 */
+/* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(284)(false);
+exports = module.exports = __webpack_require__(282)(false);
 // imports
 
 
@@ -46915,7 +46671,7 @@ exports.push([module.i, ".Selector{\n    display: flex;\n    justify-content: ce
 
 
 /***/ }),
-/* 284 */
+/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46997,7 +46753,7 @@ function toComment(sourceMap) {
 }
 
 /***/ }),
-/* 285 */
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -47063,7 +46819,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(286);
+var	fixUrls = __webpack_require__(284);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -47383,7 +47139,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 286 */
+/* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47478,11 +47234,11 @@ module.exports = function (css) {
 };
 
 /***/ }),
-/* 287 */
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(288);
+var content = __webpack_require__(286);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -47496,17 +47252,17 @@ var options = {"hmr":true}
 options.transform = transform
 options.insertInto = undefined;
 
-var update = __webpack_require__(285)(content, options);
+var update = __webpack_require__(283)(content, options);
 
 if(content.locals) module.exports = content.locals;
 
 if(false) {}
 
 /***/ }),
-/* 288 */
+/* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(284)(false);
+exports = module.exports = __webpack_require__(282)(false);
 // imports
 
 

@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import { Doughnut, Pie } from 'react-chartjs-2';
+import { Doughnut} from 'react-chartjs-2';
 
-export class ComputerChart extends Component {
+export class Chart extends Component {
     constructor(props) {
         super(props);
         this.state = {
             rawData: this.props.rawData,
-            country: this.props.country,
             labels: [],
             dataLabel:[],
         }
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.country === this.props.country) {
+        if ((prevProps.country === this.props.country && prevProps.chartType===this.props.chartType ) || this.state.firstFetch) {
+
             return;
         }
         //let obj = JSON.parse(this.props.rawData);
@@ -23,7 +23,7 @@ export class ComputerChart extends Component {
         }
         try {
             let x = text.toString().replace(/&quot;/g, '\"');
-            x = x.replace(/\s/g, "");
+            //x = x.replace(/\s/g, "");
             // x = x.replace(/\_/g, " ");
             x = JSON.parse(x);
             let countrySelected = this.props.country;
@@ -31,7 +31,7 @@ export class ComputerChart extends Component {
             console.log('=>', x.country[countrySelected])
 
                 x.country[countrySelected].forEach(assetType => {
-                    if (assetType.asset === 'Computer') {
+                    if (assetType.asset === 'Computer' && this.props.chartType === 'Computer Chart') {
                         let labels = Object.keys(assetType);
                         labels = labels.filter(label => label !== 'asset');
                         let dataLabel = []
@@ -43,13 +43,38 @@ export class ComputerChart extends Component {
                         this.setState({ labels, dataLabel }, () => {
                             console.log(`New state:`, this.state);
                         });
+                    }else if (assetType.asset === 'Mobile_Phone'&& this.props.chartType === 'Mobile Phone Chart') {
+                        let labels = Object.keys(assetType);
+                        labels = labels.filter(label => label !== 'asset');
+                        let dataLabel = []
+                        labels.forEach(value => {
+                            if(assetType[value] !== "Mobile_Phone")
+                                dataLabel.push(assetType[value]);
+                        });
+    
+                        this.setState({ labels, dataLabel }, () => {
+                            console.log(`New state:`, this.state);
+                        });
+                    }else if (assetType.asset === 'Unassigned_Peripherals'&& this.props.chartType === 'Unassigned Peripheral Chart') {
+                        let labels = Object.keys(assetType);
+                        labels = labels.filter(label => label !== 'asset');
+                        let dataLabel = []
+                        labels.forEach(value => {
+                            if(assetType[value] !== "Unassigned_Peripherals")
+                                dataLabel.push(assetType[value]);
+                        });
+    
+                        this.setState({ labels, dataLabel }, () => {
+                            console.log(`New state:`, this.state);
+                        });
                     }
+                
                 });
-            
             
         } catch (error) {
             console.log(`Parsing error:`, error);
         }
+    
     }
 
     render() {
@@ -60,12 +85,15 @@ export class ComputerChart extends Component {
                     labels: this.state.labels,
                     datasets: [
                         {
-                            label: 'Computers',
+                            label: `${this.props.chartType}`,
                             data: this.state.dataLabel,
                             backgroundColor: [
                                 'rgba(236, 238, 133, 0.4)',
                                 'rgba(255,89,0,0.4)',
-                                'rgba(0,104,255,0.4)'
+                                'rgba(0,104,255,0.4)',
+                                'rgba(2,153,134,0.4)',
+                                'rgba(171,111,39,0.4)',
+                                'rgba(201,113,220,0.4)',
     
                             ]
                         }
@@ -75,7 +103,7 @@ export class ComputerChart extends Component {
                 height={300}
                 options={{title: {
                     display: true,
-                    text: `${this.props.country} Computers`,
+                    text: `${this.props.country} ${this.props.chartType}`,
                     fontSize: 25,
                     fontColor: "#fff"
                 },
@@ -96,4 +124,4 @@ export class ComputerChart extends Component {
     }
 }
 
-export default ComputerChart
+export default Chart
