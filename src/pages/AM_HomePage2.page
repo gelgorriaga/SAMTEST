@@ -1,0 +1,102 @@
+<apex:page controller="AM_HomeController" showHeader="false" sidebar="false" standardStylesheets="false" applyBodyTag="false">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <apex:stylesheet value="{!URLFOR($Resource.Asset_Manager_Resources, 'CSS/style.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.Asset_Manager_Resources, 'JS/jquery.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.Asset_Manager_Resources, 'JS/d3.v3.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.Asset_Manager_Resources, 'JS/donuts.js')}" />
+
+    <div id="Con" class="reactContainer">
+        <header>
+            <apex:variable var="recordCount" value="{!recordTypeCount}" rendered="{!recordTypeCount > 1}">
+                <div id="type-select">
+                    <strong>Asset Type:</strong>
+                    <apex:form>
+                        <apex:selectList value="{!selectedRecordTypeId}" multiselect="false" size="1">
+                            <apex:actionSupport event="onchange" action="{!refreshHomePage}" />
+                            <apex:selectOptions value="{!recordTypeOptions}" />
+                        </apex:selectList>
+                        <p/>
+                    </apex:form>
+                </div>
+            </apex:variable>
+
+            <!-- Error Message Display-->
+            <apex:repeat value="{!errorMessages}" var="msg">
+                <apex:pageMessage summary="{!msg.Summary}" severity="Error" />
+            </apex:repeat>
+
+            <h1>Oktana Assets</h1>
+            <h2>{!assetLabel} MANAGEMENT</h2>
+        </header>
+
+        <apex:includeLightning />
+
+
+        <script>
+            $Lightning.use("c:appTest", function () {
+                $Lightning.createComponent(
+                    "c:reactChart",
+                    {},
+                    "Con",
+                    function (cmp) {
+                        console.log("Component created?");
+                        console.log(cmp);
+                    });
+            });
+
+
+        </script>
+
+
+
+        <div id="navBox">
+            <ul>
+                <li onclick="                    
+                             if( (typeof sforce != 'undefined') && (sforce != null) ) {
+                             sforce.one.navigateToURL('/apex/AM_AssetAssignmentPage?recType={!selectedRecordTypeId}');
+                             }
+                             else {
+                             window.location.href = 
+                             '/apex/AM_AssetAssignmentPage?recType={!selectedRecordTypeId}';
+                             }">
+                    <span>{!assetLabel} Assignment</span>
+                </li>
+
+                <li onclick="                    
+                             if( (typeof sforce != 'undefined') && (sforce != null) ) {
+                             sforce.one.navigateToURL('/apex/AM_AssetListPage?recType={!selectedRecordTypeId}');
+                             }
+                             else {
+                             window.location.href = 
+                             '/apex/AM_AssetListPage?recType={!selectedRecordTypeId}';
+                             }">
+                    <span>{!assetLabel} List</span>
+                </li>
+
+                <li onclick="                    
+                             if( (typeof sforce != 'undefined') && (sforce != null) ) {
+                             sforce.one.navigateToURL('{!URLFOR($Page.AM_ContactListPage)}');
+                             }
+                             else {
+                             window.location.href = 
+                             '{!URLFOR($Page.AM_ContactListPage)}';
+                             }">
+                    <span>User Search</span>
+                </li>
+
+                <li onclick="                    
+                             if( (typeof sforce != 'undefined') && (sforce != null) ) {
+                             sforce.one.navigateToURL('/apex/AM_CasePage?recType={!selectedRecordTypeId}');
+                             }
+                             else {
+                             window.location.href = 
+                             '/apex/AM_CasePage?recType={!selectedRecordTypeId}';
+                             }">
+                    <span>Report a Problem</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</apex:page>

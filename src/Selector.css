@@ -1,38 +1,37 @@
-.Selector{
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
+.Selector {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
 }
 
 select {
-    display: inline-block;
-    padding:5px; 
-    border:2px solid #ccc; 
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    margin: 0.5rem;
+  display: inline-block;
+  padding: 5px;
+  border: 2px solid #ccc;
+  -webkit-border-radius: 9px;
+  border-radius: 9px;
+  margin: 0.4rem auto;
 }
 
 select:focus {
-    border-color:#333;
+  border-color: #333;
 }
 
-input[type=submit] {
-    padding:5px 15px; 
-    background:#ccc; 
-    border:0 none;
-    cursor:pointer;
-    -webkit-border-radius: 5px;
-    border-radius: 5px; 
-    margin: 0.5rem;
+input[type="submit"] {
+  padding: 5px 15px;
+  background: #ccc;
+  border: 0 none;
+  cursor: pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  margin: 0.5rem;
 }
 
-form{
-    margin: 1.5rem 0 0 0;
+form {
+  margin: 1.5rem 0 0 0;
 }
 
-label{
-    color: #fff;
-    display: inline;
+label {
+  color: #fff;
+  display: inline;
 }
-

@@ -8462,11 +8462,6 @@ var App = function (_Component) {
       return _react2.default.createElement(
         "div",
         null,
-        _react2.default.createElement(
-          "h1",
-          null,
-          " Oktana Asset Charts test"
-        ),
         this.state.isLoaded ? _react2.default.createElement(_Selector2.default, { rawData: this.state.rawData }) : _react2.default.createElement("div", { className: "spinner" })
       );
     }
@@ -8768,6 +8763,8 @@ var _reactChartjs = __webpack_require__(16);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -8882,9 +8879,9 @@ var Chart = exports.Chart = function (_Component) {
                             backgroundColor: ['rgba(236, 238, 133, 0.4)', 'rgba(255,89,0,0.4)', 'rgba(0,104,255,0.4)', 'rgba(2,153,134,0.4)', 'rgba(171,111,39,0.4)', 'rgba(201,113,220,0.4)']
                         }]
                     },
-                    width: 300,
-                    height: 300,
-                    options: { title: {
+                    width: 200,
+                    height: 200,
+                    options: { title: _defineProperty({
                             display: true,
                             text: this.props.country + ' ' + this.props.chartType,
                             fontSize: 25,
@@ -8892,9 +8889,7 @@ var Chart = exports.Chart = function (_Component) {
                             position: 'top',
                             responsive: true,
                             maintainAspectRatio: false
-                            // responsive: true,
-                            // 
-                        },
+                        }, 'responsive', false),
                         legend: {
                             display: true,
                             position: 'top',
@@ -46680,7 +46675,7 @@ exports = module.exports = __webpack_require__(282)(false);
 
 
 // module
-exports.push([module.i, ".Selector{\n    display: flex;\n    justify-content: center;\n    margin: 0 auto;\n}\n\nselect {\n    display: inline-block;\n    padding:5px; \n    border:2px solid #ccc; \n    -webkit-border-radius: 5px;\n    border-radius: 5px;\n    margin: 0.5rem;\n}\n\nselect:focus {\n    border-color:#333;\n}\n\ninput[type=submit] {\n    padding:5px 15px; \n    background:#ccc; \n    border:0 none;\n    cursor:pointer;\n    -webkit-border-radius: 5px;\n    border-radius: 5px; \n    margin: 0.5rem;\n}\n\nform{\n    margin: 1.5rem 0 0 0;\n}\n\nlabel{\n    color: #fff;\n    display: inline;\n}\n\n", ""]);
+exports.push([module.i, ".Selector {\n  display: flex;\n  justify-content: center;\n  margin: 0 auto;\n}\n\nselect {\n  display: inline-block;\n  padding: 5px;\n  border: 2px solid #ccc;\n  -webkit-border-radius: 9px;\n  border-radius: 9px;\n  margin: 0.4rem auto;\n}\n\nselect:focus {\n  border-color: #333;\n}\n\ninput[type=\"submit\"] {\n  padding: 5px 15px;\n  background: #ccc;\n  border: 0 none;\n  cursor: pointer;\n  -webkit-border-radius: 5px;\n  border-radius: 5px;\n  margin: 0.5rem;\n}\n\nform {\n  margin: 1.5rem 0 0 0;\n}\n\nlabel {\n  color: #fff;\n  display: inline;\n}\n", ""]);
 
 // exports
 

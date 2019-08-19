@@ -107,8 +107,8 @@ export class Chart extends Component {
                         }
                     ]
                 }}
-                width={300}
-                height={300}
+                width={200}
+                height={200}
                 options={{title: {
                     display: true,
                     text: `${this.props.country} ${this.props.chartType}`,
@@ -116,9 +116,8 @@ export class Chart extends Component {
                     fontColor: "#fff",
                     position: 'top',
                     responsive: true,
-                    maintainAspectRatio: false
-                    // responsive: true,
-                    // 
+                    maintainAspectRatio: false,
+                    responsive: false
                 },
                 legend: {
                     display: true,
