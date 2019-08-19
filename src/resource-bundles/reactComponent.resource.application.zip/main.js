@@ -8465,7 +8465,7 @@ var App = function (_Component) {
         _react2.default.createElement(
           "h1",
           null,
-          " Oktana Asset Charts"
+          " Oktana Asset Charts test"
         ),
         this.state.isLoaded ? _react2.default.createElement(_Selector2.default, { rawData: this.state.rawData }) : _react2.default.createElement("div", { className: "spinner" })
       );
@@ -8733,8 +8733,9 @@ var Selector = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                     'div',
-                    { style: { width: 400, height: 250, margin: "5vw 35vw" } },
-                    renderChart
+                    { style: { width: 400, height: 250, margin: "1vw 35vw" } },
+                    renderChart,
+                    console.log(this.state.country)
                 )
             );
         }
@@ -8887,16 +8888,23 @@ var Chart = exports.Chart = function (_Component) {
                             display: true,
                             text: this.props.country + ' ' + this.props.chartType,
                             fontSize: 25,
-                            fontColor: "#fff"
+                            fontColor: "#fff",
+                            position: 'top',
+                            responsive: true,
+                            maintainAspectRatio: false
+                            // responsive: true,
+                            // 
                         },
                         legend: {
                             display: true,
-                            position: 'right',
+                            position: 'top',
                             fontColor: "#fff",
                             labels: {
                                 display: true,
                                 fontColor: "#fff",
-                                fontSize: 10
+                                'fontSize': 8,
+                                boxWidth: 5,
+                                borderWidth: 0
 
                             }
                         } }

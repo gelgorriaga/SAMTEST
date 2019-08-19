@@ -50,8 +50,9 @@ class Selector extends React.Component {
                     </form>
                 </div>
 
-                <div style={{ width: 400, height: 250, margin: "5vw 35vw" }}>
+                <div style={{ width: 400, height: 250, margin: "1vw 35vw" }}>
                     {renderChart}
+                    {console.log(this.state.country)}
                 </div>
 
             </div>

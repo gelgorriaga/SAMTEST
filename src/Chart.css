@@ -1,8 +1,0 @@
-.Chart {
-}
-@media only screen and (max-device-width: 480px) {
-  .Chart {
-    height: 200px !important;
-    width: 200px !important;
-  }
-}

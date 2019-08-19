@@ -113,16 +113,23 @@ export class Chart extends Component {
                     display: true,
                     text: `${this.props.country} ${this.props.chartType}`,
                     fontSize: 25,
-                    fontColor: "#fff"
+                    fontColor: "#fff",
+                    position: 'top',
+                    responsive: true,
+                    maintainAspectRatio: false
+                    // responsive: true,
+                    // 
                 },
                 legend: {
                     display: true,
-                    position: 'right',
+                    position: 'top',
                     fontColor: "#fff",
                     labels: {
                         display: true,
                         fontColor: "#fff",
-                        fontSize: 10
+                        'fontSize': 8,
+                        boxWidth: 5,
+                        borderWidth: 0
 
                     }
                 }}}
